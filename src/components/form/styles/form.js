@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { Link as ReachRouterLink} from 'react-router-dom';
+import { Link as ReactRouterLink} from 'react-router-dom';
 
 export const Container = styled.div`
     display: flex;
@@ -51,7 +51,7 @@ export const TextSmall = styled.p`
     color: #8c8c8c;
 `;  
 
-export const Link = styled(ReachRouterLink)`
+export const Link = styled(ReactRouterLink)`
     color: white;
     text-decoration: none;
 
@@ -61,9 +61,32 @@ export const Link = styled(ReachRouterLink)`
 `;  
 
 export const Input = styled.input`
+    background: #333;
+    border-radius: 4px;
+    border: 0;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
 
+    &:last-of-type {
+        margin-bottom: 30px;
+    }
 `;  
 
 export const Submit = styled.button`
+    background: #e50914;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 24px 0 12px;
+    padding: 16px;
+    border: 0;
+    color: white;
+    cursor: pointer;
 
+    &:disabled {
+        opacity: 0.5;
+    }
 `;  

@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { FirebaseContext } from '../context/firebase';
 import { HeaderContainer } from '../containers/header';
 import { FooterContainer } from '../containers/footer';
 import { Form } from '../components';
+import * as ROUTES from '../constants/routes';
 
 export default function Signin() {
-    const [emailAddress, setemailAddress] = useState();
-    const [password, setPassword] = useState();
+    const history = useHistory();
+    const { firebase } = useContext(FirebaseContext);
+    const [emailAddress, setEmailAddress] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
     //check form validation
@@ -13,7 +18,18 @@ export default function Signin() {
     const handleSignin = (event) => {
         event.preventDefault();
 
-        //this is for firebase
+        //firebase
+        firebase
+            .auth()
+            .signInWithEmailAndPassword(emailAddress, password)
+            .then(() => {
+                history.push(ROUTES.BROWSE);
+            })
+            .catch((error) => {
+                setEmailAddress('');
+                setPassword('');
+                setError(error.message);
+            })
     }
 
     return(
@@ -24,7 +40,7 @@ export default function Signin() {
                     {error && <Form.Error>{error}</Form.Error>}
 
                     <Form.Base onSubmit={handleSignin} method="POST">
-                        <Form.Input placeholder="Email Address" value={emailAddress} onChange={({ target }) => setemailAddress(target.value)}/>
+                        <Form.Input placeholder="Email Address" value={emailAddress} onChange={({ target }) => setEmailAddress(target.value)}/>
 
                         <Form.Input placeholder="Password" autoComplete="off" type="password" value={password} onChange={({ target }) => setPassword(target.value)}/>
 
@@ -32,8 +48,9 @@ export default function Signin() {
                     </Form.Base>
 
                     <Form.Text>
-                        New to Netflix? <Form.Link to="/signup">Sign Up</Form.Link>
+                        New to Netflix? <Form.Link to="/signup">Sign Up Now</Form.Link>
                     </Form.Text>
+                    <Form.TextSmall>This page is protected by Google reCAPTCHA to ensure you're not a bot. Learn more.</Form.TextSmall>
                 </Form>
             </HeaderContainer>
             <FooterContainer />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ReachRouterLink  } from 'react-router-dom';
 
 import { Background, Container, Logo, ButtonLink } from './styles/header'
 
@@ -18,9 +18,9 @@ Header.ButtonLink = function HeaderButtonLink({ ...restProps}) {
 
 Header.Logo = function HeaderLogo({ to, ...restProps}) {
     return (
-        <ReactRouterLink to={to}>
+        <ReachRouterLink to={to}>
             <Logo {...restProps} />
-        </ReactRouterLink>
+        </ReachRouterLink>
     )
 }
 
