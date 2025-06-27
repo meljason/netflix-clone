@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Profiles } from '../components';
 import * as ROUTES from '../constants/routes';
-import logo from '../logo.png';
+import logo from '../logo.svg';
 
 export function SelectProfileContainer({ user, setProfile }) {
     return (

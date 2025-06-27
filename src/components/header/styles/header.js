@@ -175,12 +175,12 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.img`
-    height: 58px;
+    height: 150px;
     width: 200px;
     margin-right: 40px;
 
     @media (min-width: 1449px) {
-        height: 45px;
+        height: 150px;
         width: 167px;
     }
 `;
